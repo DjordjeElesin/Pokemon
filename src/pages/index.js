@@ -26,6 +26,8 @@ export default function Home() {
   //   }
   // }
 
+  document.title = "Pokemon- Gotta Catch Them All"
+
   const handleCountChange = (operation) => {
     setCount(prevCount => 
       operation === "increment" ? prevCount + 1 : prevCount - 1
