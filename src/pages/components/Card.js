@@ -13,7 +13,7 @@ export default function Card(props){
           </tr>
           <tr>
             <td>Abilities</td>
-            <td className="abilities">{props.abilities.map((element) => {
+            <td className="abilities">{props.abilities.slice(0,2).map((element) => {
               return <span key={element.ability.name}>{element.ability.name}</span>
             })}</td>
           </tr>
