@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import generateRandomNumbers from "./utils/Utilities.js";
+import { DataContext } from "./context/DataContext.js";
 
 //components
 import Card from "./components/Card.js";
