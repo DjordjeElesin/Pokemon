@@ -1,4 +1,11 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "./navbar.css";
+@import "./card.css";
+@import "./search.css";
+@import "./filter.css";
+@import "./modal.css";
+
 *{
   padding: 0;
   margin: 0;
@@ -13,22 +20,29 @@ body{
   color: #fff;
 }
 
-.container{
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
 
-.generateBtn{
+.loadBtnContr{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadBtn{
+  width: 30%;
   font-size: 20px;
   font-weight: 600;
-  margin: 3% 3%;
+  margin: 3% 0;
   padding: 1% 5%;
   border: none;
   border-radius: 15px;
   color: #fff;
   background: #3c5aa6;
+  transition: all 0.2s;
+}
+
+.loadBtn:hover{
+  background: #166bb6;
 }
 
 .counterContr{
@@ -40,7 +54,7 @@ body{
   padding: 0 3%;
 }
 
-.counterContr .decrement, .counterContr .increment{
+.counterContr .counterBtn{
   width: 20%;
   height: 40px;
   border: none;
@@ -56,155 +70,3 @@ body{
   font-weight: 600;
 }
 
-.cardContr{
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.card{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  width: 30%;
-  max-width: 30%;
-  aspect-ratio: 1/1.2;
-  overflow: hidden;
-  background: #525252;
-  border-radius: 20px;
-  border: 1px solid #ffffff14;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  /* margin: 10px; */
-  text-align: center;
-}
-
-.card .prfPicContr{
-  width: 75%;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 15px;
-}
-
-.card img{
-  width: 80%;
-  height: 80%;
-  object-fit: cover;
-}
-
-.card h2{
-  margin-bottom: 10px;
-}
-
-
-
-.card table {
-  width: 100%;
-  text-align: start;
-}
-
-.card table .types, .card table .abilities{
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-wrap: wrap;
-  padding-left: 10px;
-} 
-
-.card table .types span, .card table .abilities span{
-  font-size: 18px;
-  background-color: #3c5aa6;
-  padding: 2%;
-  border-radius: 10px;
-  color: #fff;
-  margin: 1%;
-}
-
-@media screen and (max-width: 1024px){
-  .card{
-    aspect-ratio: 1/1.5;
-  }
-  .card table .types span, .card table .abilities span{
-    font-size: 14px;
-  }
-}
-
-.card table .abilities span{
-  background-color: #ffcb05;
-}
-
-
-/* MODAL */
-.container.active-modal {
-  overflow-y: hidden;
-}
-
-.modal{
-  z-index: 999;
-}
-.modal, .overlay {
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
-}
-
-.overlay {
-  background: rgba(49,49,49,0.8);
-}
-.modal-content {
-  overflow: hidden;
-  overflow-y: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #525252;
-  width: 60%;
-  height: 80%;
-  padding: 5%;
-  border-radius: 3px;
-  max-width: 600px;
-  min-width: 300px;
-  border-radius: 20px;
-  border: 1px solid #ffffff14;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-}
-
-.modal-content .modalImageContr{
-  width: 100%;
-  height: 60%;
-}
-
-.modal-content .modalImageContr img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  border: none;
-  background: none;
-  font-family: "Poppins";
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.close-modal:hover{
-/*   opacity: 0.8; */
-scale: 1.1;
-}

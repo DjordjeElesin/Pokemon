@@ -1,0 +1,56 @@
+.navbar{
+  width: 100%;
+  height: auto;
+  padding: 0 2%;
+}
+
+.navbarList{
+  width: 100%;
+  background: #3c5aa6;
+  border-radius: 0 0 30px 30px;
+  list-style: none;
+  height: 80px;
+  padding: 0 3%;
+  position: relative;
+}
+
+.listItem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: auto;
+  padding: 0 2%;
+  float: left;
+  z-index: 1;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.listItem:hover:not(.listItem.logo){
+  background: #145fa1;
+}
+
+.listItem.about{
+  float: right;
+}
+.listItem.logo{
+  padding: 1%;
+  cursor: default;
+  user-select: none;
+}
+.listItem.logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.listItem a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  z-index: 2;
+}

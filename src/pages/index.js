@@ -1,110 +1,123 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import generateRandomNumbers from "./utils/Utilities.js";
 
+//components
 import Card from "./components/Card.js";
-import Counter from "./components/Counter.js";
-import { useEffect, useReducer } from "react";
-import React, { useState } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "./components/Navbar.js";
+import Search from "./components/Search.js";
+import Filter from "./components/Filter.js";
 
 export default function Home() {
-  const [pokemons, setPokemons] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [count, setCount] = useState(3);
+  const [pokemonNumbers, setPokemonNumbers] = useState([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+  ]);
+  const [randomNumbers, setRandomNumbers] = useState([]);
+  const [isRandomized, setIsRandomized] = useState(false);
+  const [pokemonData, setPokemonData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
-  // const fetchPokemonDetails = async (url) => {
-  //   try{
-  //     const response = await axios.get(url)
-  //     return response.data;
-  //   }catch(error){
-  //     console.log(`Error fetching details for ${url}: `, error)
-  //     return null;
-  //   }
-  // }
-
-  document.title = "Pokemon- Gotta Catch Them All"
-
-  const handleCountChange = (operation) => {
-    setCount(prevCount => 
-      operation === "increment" ? prevCount + 1 : prevCount - 1
-    )
-  }
-
-  const getPokemonDetails = (url) => {
-    return axios
-      .get(url)
-      .then((response) => response.data)
-      .catch((error) => console.error(error));
+  const resetToInitialState = () => {
+    setPokemonNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    setRandomNumbers([]);
+    setIsRandomized(false);
+    setPokemonData([]);
+    setSelectedPokemon(null);
   };
 
-  const generateRandomNumber = (counterValue) => {
-    let length = counterValue.count;
-    let array = Array.from({ length }, () => Math.floor(Math.random() * 1025));
-    return array;
-  };
+  useEffect(() => {
+    const fetchPokemonData = async () => {
+      setIsLoading(true);
+      try {
+        const numbersArray = isRandomized ? randomNumbers : pokemonNumbers;
+        console.log("numbersArray: ", numbersArray, isRandomized);
+        const newPokemonData = await Promise.all(
+          numbersArray.map(async (number) => {
+            const response = await axios.get(
+              `https://pokeapi.co/api/v2/pokemon/${number}`
+            );
+            return response.data;
+          })
+        );
+        setPokemonData((prevData) =>
+          [
+            ...new Set([...prevData, ...newPokemonData].map(JSON.stringify)),
+          ].map(JSON.parse)
+        );
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const fetchPokemonData = async () => {
-    console.log("tu sam");
-    let randomNumbers = generateRandomNumber({count});
-    let pokemonDetails = [];
-    try {
-      pokemonDetails = await Promise.all(
-        randomNumbers.map((number) =>
-          getPokemonDetails(`https://pokeapi.co/api/v2/pokemon/${number}`)
-        )
-      );
-
-      setPokemons(pokemonDetails);
-      console.log("tu sam", pokemonDetails);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  /*  useEffect(() => {
-    let isMounted =true;
-    // axios.get('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')
-    // .then(async (response) => {
-    //   if(isMounted){
-    //     const pokemonDetails = await Promise.all(
-    //       response.data.results.map(async (pokemon) => {
-    //         const details = await getPokemonDetails(pokemon.url)
-    //         return {...pokemon, details}
-    //       })
-    //     )
-
-
-    //     setPokemons(pokemonDetails);
-    //     setIsLoading(false);
-    //   }
-    // })
-    // .catch((error) => console.error(error))
-    
     fetchPokemonData();
-    return () => {
-      isMounted = false;
+  }, [pokemonNumbers, randomNumbers, isRandomized]);
+
+  const loadMore = () => {
+    if (isRandomized) {
+      setRandomNumbers(generateRandomNumbers(12));
+    } else {
+      setPokemonNumbers((prevNumbers) =>
+        prevNumbers.map((number) => number + 12)
+      );
+      console.log("Numbers", pokemonNumbers);
     }
-  }, []); */
+  };
+
+  const handlePokemonSelection = async (name) => {
+    if (name === "") {
+      resetToInitialState();
+      console.log("ordered: ", pokemonNumbers, isRandomized);
+    } else {
+      try {
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${name.replace(/^0+/, '')}`
+        );
+        setSelectedPokemon(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const handleRandomizeClick = () => {
+    let array = generateRandomNumbers(12);
+    setRandomNumbers(array);
+    setIsRandomized(true);
+    setPokemonData([]);
+    console.log("random: ", array);
+  };
 
   return (
-    <div className="container">
-      <Counter value={count} onCountChange={handleCountChange}/>
-      <button className="generateBtn" onClick={() => fetchPokemonData()}>
-        Generate Random
-      </button>
-      <div className="cardContr">
-        {pokemons &&
-          pokemons.map((pokemon) => (
-            <Card
-              key={pokemon.id}
-              pokemon = {pokemon}
-            />
-          ))}
-      </div>
-    </div>
+    <>
+      <Navbar />
+      <Search handlePokemonSelection={handlePokemonSelection} />
+      <Filter
+        handleRandomizeClick={handleRandomizeClick}
+        isLoading={isLoading}
+      />
+      <DataContext.Provider value={pokemonData}>
+        <div className="container">
+          <div className="cardContr">
+            {selectedPokemon ? (
+              <Card key={selectedPokemon.id} pokemon={selectedPokemon} />
+            ) : (
+              pokemonData.map((pokemon) => (
+                <Card key={pokemon.id} pokemon={pokemon} />
+              ))
+            )}
+          </div>
+        </div>
+        {!selectedPokemon && (
+          <div className="loadBtnContr">
+            <button className="loadBtn" onClick={loadMore} disabled={isLoading}>
+              {isLoading ? "Loading..." : "Load More"}
+            </button>
+          </div>
+        )}
+      </DataContext.Provider>
+    </>
   );
 }

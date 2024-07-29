@@ -1,0 +1,87 @@
+.searchContr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin: 40px 0 30px;
+  position: relative;
+}
+.searchContr input {
+  width: 50%;
+  height: 50px;
+  border: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding: 0 20px;
+  font-size: 20px;
+  font-family: "Poppins";
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s;
+  z-index: 99;
+}
+
+.searchContr input::placeholder{
+  font-weight: 400; 
+}
+
+.searchContr input:focus{
+  box-shadow: 0 0 12px 5px rgba(255, 255, 255, 0.15);
+  border: none;
+  outline: none;
+  z-index: 1;
+}
+
+.searchContr button{
+  width: 15%;
+  height: 50px;
+  border: none;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  text-wrap: wrap;
+  background-color: #ffcb05;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 18px;
+  color: #333;
+  transition: all 0.3s;
+  z-index: 100;
+}
+.searchContr button:hover{
+  background-color: #3c5aa6;
+  color: #fff;
+}
+
+#pokemonList{
+  position: absolute;
+  top: 107%;
+  width: 65%;
+  background: #fff;
+  color: #333;
+  z-index: 99;
+  border-radius: 30px;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+#pokemonList .suggestion{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 35px;
+  list-style: none;
+  width: 100%;
+  padding: 0 15px;
+}
+
+#pokemonList .suggestion:first-of-type{
+  margin-top: 10px;
+}
+#pokemonList .suggestion:last-of-type{
+  margin-bottom: 10px;
+}
+
+#pokemonList .suggestion:hover{
+  background-color: #dfdfdf;
+}

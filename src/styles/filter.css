@@ -1,0 +1,39 @@
+.optionsContr{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.optionsContr hr{
+  width: 80%;
+  border-radius: 10px;
+  border: 1px solid #6e6e6e;
+}
+
+#randomizeBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+  width: 50%;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background: #3c5aa6;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 2% 0;
+  transition: all 0.3s;
+}
+
+#randomizeBtn:hover{
+  background: #166bb6;
+}
+
+#randomizeBtn:focus{
+  border: none;
+  outline: none;
+}
