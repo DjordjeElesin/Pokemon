@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 
-export default function PokemonDetails({ colorData }) {
+export default function SinglePokemonDetails({ colorData }) {
   const pokemon = useContext(DataContext);
 
   const height = pokemon.height * 10;

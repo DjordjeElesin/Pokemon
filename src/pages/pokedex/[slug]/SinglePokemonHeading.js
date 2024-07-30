@@ -5,7 +5,7 @@ import { useContext, useRef, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 
 
-export default function ModalHeading() {
+export default function SinglePokemonHeading() {
   const pokemon = useContext(DataContext);
   const [isPlaying ,setIsPlaying] = useState(false);
   const audioRef = useRef(null);
@@ -23,10 +23,10 @@ export default function ModalHeading() {
   return (
     <div className="headingContr">
       <div>
-        <h2>
+        <h1>
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           <span className="id">#{pokemon.id.toString().padStart(4, "0")}</span>
-        </h2>
+        </h1>
       </div>
       <button id="playPokemonSound" onClick={playSound}>
         {isPlaying ? <IoPauseCircle /> : <IoIosPlayCircle />}

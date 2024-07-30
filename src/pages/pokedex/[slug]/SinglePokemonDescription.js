@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 import useFetch from "@/pages/hooks/useFetch.js";
 
-export default function PokemonDescription({ colorData }) {
+export default function SinglePokemonDescription() {
   const pokemon = useContext(DataContext);
   const { data } = useFetch(pokemon.species.url);
 

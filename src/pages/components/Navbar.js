@@ -1,3 +1,4 @@
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -7,16 +8,16 @@ export default function Navbar() {
           <img src="/media/pokemon_icon.png"/>
         </li>
         <li  className="listItem">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
         </li>
         <li className="listItem">
-          <a href="/">Battle Arena</a>
+          <Link href="/battle-arena">Battle Arena</Link>
         </li>
         <li className="listItem">
-          <a href="/">Pokedex</a>
+          <Link href="/pokedex">Pokedex</Link>
         </li>
         <li className="listItem about">
-          <a href="/">About</a>
+          <Link href="/About">About</Link>
         </li>
       </ul>
     </nav>

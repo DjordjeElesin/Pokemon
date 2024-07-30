@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import generateRandomNumbers from "./utils/Utilities.js";
-import { DataContext } from "./context/DataContext.js";
+import generateRandomNumbers from "../utils/Utilities.js";
+import { DataContext } from "../context/DataContext.js";
 
 //components
-import HomePage from "./components/HomePage/HomePage.js";
-import Card from "./components/Card.js";
-import Navbar from "./components/Navbar.js";
-import Search from "./components/Search.js";
-import Filter from "./components/Filter.js";
+import Head from "next/head.js";
+import Card from "../components/Card.js";
+import Search from "../components/Search.js";
+import Filter from "../components/Filter.js";
 
-export default function Home() {
-
+export default function Pokedex(){
+  
   const [pokemonNumbers, setPokemonNumbers] = useState([
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
   ]);
@@ -92,12 +91,11 @@ export default function Home() {
     setPokemonData([]);
     console.log("random: ", array);
   };
-
   return (
     <>
-
-    {/* <>
-      <Navbar />
+      <Head>
+        <title>Pokedex</title>
+      </Head>
       <Search handlePokemonSelection={handlePokemonSelection} />
       <Filter
         handleRandomizeClick={handleRandomizeClick}
@@ -123,8 +121,6 @@ export default function Home() {
           </div>
         )}
       </DataContext.Provider>
-    </> */}
-      <h1>Home Page</h1>
     </>
-  );
+  )
 }

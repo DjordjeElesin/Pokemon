@@ -4,7 +4,26 @@
 @import "./card.css";
 @import "./search.css";
 @import "./filter.css";
-@import "./modal.css";
+@import "./singlePokemon.css";
+@import "./footer.css";
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #8c8c8c; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #ffffff; 
+  transition: all 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fff; 
+}
 
 *{
   padding: 0;
@@ -18,6 +37,8 @@ body{
   font-family: "Poppins";
   background: #333;
   color: #fff;
+  position: relative;
+  padding-bottom: 200px;
 }
 
 
