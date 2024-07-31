@@ -17,13 +17,13 @@ export default function SinglePokemonDetails({ colorData }) {
       </p>
       <p className="detail">
         Abilities
+      </p>
         <div className="abilitiesContr">
           {pokemon.abilities.map((element) => (
-            <span className="ability">{element.ability.name.charAt(0).toUpperCase() + element.ability.name.slice(1)}</span>
+            <span key={element.ability.name} className="ability">{element.ability.name.charAt(0).toUpperCase() + element.ability.name.slice(1)}</span>
 
           ))}
         </div>
-      </p>
     </div>
   );
 }

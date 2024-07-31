@@ -9,13 +9,8 @@ export default function SinglePokemonDescription() {
   const text = data?.flavor_text_entries.find(
     (text) => text.language.name === "en"
   );
-  text ? console.log(text) : console.log("cekaj");
 
   return (
-    /* <
-      className="pokemonDescription"
-      style={{ background: `${colorData[0]}`, color: `${colorData[1]}` }}
-    > */
     <p>
       <span className="funFact">Fun fact:</span> 
       {text?.flavor_text

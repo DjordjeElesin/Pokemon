@@ -2,11 +2,11 @@ import { useRouter } from "next/router";
 import { DataContext } from "@/pages/context/DataContext";
 import { Palette, usePalette } from "color-thief-react";
 
-import SinglePokemonHeading from "./SinglePokemonHeading";
-import SinglePokemonDescription from "./SinglePokemonDescription";
+import SinglePokemonText from "./SinglePokemonText";
 import SinglePokemonDetails from "./SinglePokemonDetails";
 import Link from "next/link";
 import Head from "next/head";
+import PokemonStats from "./PokemonStats";
 
 export default function SinglePokemonPage({ repo }) {
   const router = useRouter();
@@ -24,28 +24,32 @@ export default function SinglePokemonPage({ repo }) {
   return (
     <>
       <Head>
-        <title>Pokedex - {repo.name.charAt(0).toUpperCase() + repo.name.slice(1)}</title>
+        <title>
+          Pokedex - {repo.name.charAt(0).toUpperCase() + repo.name.slice(1)}
+        </title>
       </Head>
       <div className="singlePokemonContr">
         <div className="singlePokemonContentContr">
-          {data && (
-            <div
-              className="singlePokemonImageContr"
-              style={{ background: data[0] }}
-            >
-              <img src={repo.sprites.other["official-artwork"].front_default} />
-            </div>
-          )}
           <DataContext.Provider value={repo}>
-            {data && <SinglePokemonHeading />}
-            {data && <SinglePokemonDescription />}
-            {data && <SinglePokemonDetails colorData={data} />}
+            {data && (
+              <div className="singlePokemonImageContr">
+                <img
+                  src={repo.sprites.other["official-artwork"].front_default}
+                />
+              </div>
+            )}
+            <div className="singlePokemonDetailsContr">
+              {data && <SinglePokemonText />}
+              {data && <SinglePokemonDetails colorData={data} />}
+              <PokemonStats/>
+            </div>
           </DataContext.Provider>
-          {data && 
-          <button id="returnToPokedexBtn">
-            <Link  href="/pokedex">Browse More Pokemon</Link>
-          </button>}
         </div>
+        {data && (
+          <button id="returnToPokedexBtn">
+            <Link href="/pokedex">Browse More Pokemon</Link>
+          </button>
+        )}
       </div>
     </>
   );
