@@ -19,6 +19,8 @@
     "color-thief-react": "^2.1.0",
     "colorthief": "^2.4.0",
     "css-loader": "^7.1.2",
+    "m5": "^0.1.0",
+    "md5": "^2.3.0",
     "next": "14.2.5",
     "postcss-loader": "^8.1.1",
     "react": "^18",

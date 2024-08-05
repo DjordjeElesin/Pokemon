@@ -41,7 +41,7 @@ export default function SinglePokemonPage({ repo }) {
             <div className="singlePokemonDetailsContr">
               {data && <SinglePokemonText />}
               {data && <SinglePokemonDetails colorData={data} />}
-              <PokemonStats/>
+              {data && <PokemonStats/>}
             </div>
           </DataContext.Provider>
         </div>

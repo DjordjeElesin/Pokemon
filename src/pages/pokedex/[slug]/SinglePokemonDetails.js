@@ -5,7 +5,7 @@ export default function SinglePokemonDetails({ colorData }) {
   const pokemon = useContext(DataContext);
 
   const height = pokemon.height * 10;
-  const weight = (pokemon.weight / 10).toFixed(2);
+  const weight = (pokemon.weight / 10).toFixed(1);
 
   return (
     <div className="pokemonDetails">

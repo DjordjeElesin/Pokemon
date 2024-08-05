@@ -6,6 +6,8 @@
 @import "./filter.css";
 @import "./singlePokemon.css";
 @import "./footer.css";
+@import "./pokemonStats.css";
+@import "./errorPage.css";
 
 ::-webkit-scrollbar {
   width: 10px;

@@ -23,11 +23,9 @@
   justify-content: center;
   width: 70%;
   height: auto;
-  background: #acacac;
   margin-bottom: 5%;
   border-radius: 0;
-  padding: 1%;
-  clip-path: polygon(0 0, 100% 0, 100% 0%, 100% 100%, 7% 100%, 0 93%);
+
 }
 
 .singlePokemonContentContr .singlePokemonImageContr img {
@@ -37,7 +35,6 @@
   -webkit-user-drag: none;
   border-radius: inherit;
   background: #333;
-  clip-path: polygon(0 0, 100% 0, 100% 0%, 100% 100%, 7% 100%, 0 93%);
 }
 
 .pokemonTextContr{
@@ -152,10 +149,10 @@
     flex-direction: row;
     gap: 3%;
   }
-  .singlePokemonImageContr{
+  .singlePokemonContentContr .singlePokemonImageContr{
     width: 30%;
   }
   .singlePokemonDetailsContr{
-    width: 50%;
+    width: 70%;
   }
 }
